@@ -42,7 +42,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-        .domain([2, d3.max(healthData, d => d.healthcare + 3.25)])
+        .domain([2, d3.max(healthData, d => d.healthcare + 3.1)])
         .range([height, 0]);
 
     // Create axis functions
