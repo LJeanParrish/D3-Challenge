@@ -38,11 +38,11 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
     // Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-        .domain([8, d3.max(healthData, d => d.poverty)])
+        .domain([8, d3.max(healthData, d => d.poverty + 2.5)])
         .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-        .domain([2, d3.max(healthData, d => d.healthcare)])
+        .domain([2, d3.max(healthData, d => d.healthcare + 3.25)])
         .range([height, 0]);
 
     // Create axis functions
@@ -67,7 +67,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .append("circle")
         .attr("cx", d => xLinearScale(d.poverty))
         .attr("cy", d => yLinearScale(d.healthcare))
-        .attr("r", "12")
+        .attr("r", "10")
         .classed("stateCircle", true)
         .attr("opacity", ".5");
 
