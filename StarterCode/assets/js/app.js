@@ -92,7 +92,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .style("font-weight", "bold")
         .attr("alignment-baseline", "central");
 
-    // Create axes labels
+    // Create axes labels and format text
     //=================================================================
     chartGroup.append("text")
         .attr("transform", "rotate(-90)")
