@@ -23,8 +23,20 @@ var chartGroup = svg.append("g")
 
 //import the data from the CSV file
 
-d3.csv("./data/data.csv").then(function (healthData) {
-    console.log(healthData)
+d3.csv("data.csv").then(function (healthData) {
+    healthData.forEach(function(data) {
+        data.healthcare = +data.healthcare;
+        data.income = +data.income;
+        data.age = +data.age;
+        data.poverty = +data.poverty;
+        data.obesity = +data.obesity;
+        data.smoker = +data.smoker;
+    });
 
+
+
+
+
+
+    
 });
-
