@@ -93,6 +93,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .attr("alignment-baseline", "central");
 
     // Create axes labels
+    //=================================================================
     chartGroup.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 0 - margin.left + 40)
@@ -102,6 +103,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .style("fill", "black")
         .style("font", "20px sans-serif")
         .style("font-weight", "bold")
+        .attr("text-anchor", "middle")
         .text("Lacks HealthCare (%)");
 
     chartGroup.append("text")
@@ -109,6 +111,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .attr("class", "axisText")
         .style("font", "20px sans-serif")
         .style("font-weight", "bold")
+        .attr("text-anchor", "middle")
         .text("Poverty (%)");
 
 }).catch(function (error) {
