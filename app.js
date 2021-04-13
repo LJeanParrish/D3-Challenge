@@ -56,6 +56,18 @@ d3.csv("data.csv").then(function (healthData) {
 
     chartGroup.append("g")
       .call(leftAxis);
+    
+    // Step 5: Create Circles
+    // ==============================
+    var circlesGroup = chartGroup.selectAll("circle")
+    .data(healthData)
+    .enter()
+    .append("circle")
+    .attr("cx", d => xLinearScale(d.poverty))
+    .attr("cy", d => yLinearScale(d.healthcare))
+    .attr("r", "15")
+    .attr("fill", "blue")
+    .attr("opacity", ".5");
 
     
 
