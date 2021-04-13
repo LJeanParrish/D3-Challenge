@@ -71,51 +71,44 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .classed("stateCircle", true)
         .attr("opacity", ".5");
 
-    // // Initialize tool tip
-    // // ==============================
-    // var toolTip = d3.tip()
-    //     .attr("class", "tooltip")
-    //     .offset([80, -60])
-    //     .html(function (d) {
-    //         return (`${d.abbr}`);
-    //     });
-
-    // //Create tooltip in the chart
-    // // ==============================
-    // chartGroup.call(toolTip);
-
-    // //Create event listeners to display and hide the tooltip
-    // // ==============================
-    // circlesGroup.on("click", function (data) {
-    //     toolTip.show(data, this);
-    // })
-    
-    // // onmouseout event
-    // .on("mouseout", function (data, index) {
-    //     toolTip.hide(data);
-    // });
+    //Alternative to tool tip for adding text datapoints
+    chartGroup.append("g")
+        .selectAll('text')
+        .data(healthData)
+        .enter()
+        .append("text")
+        .text(d => d.abbr)
+        .attr("x", d => xLinearScale(d.poverty))
+        .attr("y", d => yLinearScale(d.healthcare))
+        .classed(".stateText", true)
+        .attr("font-family", "sans-serif")
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
+        .attr("font-size", "10px")
+        .style("font-weight", "bold")
+        .attr("alignment-baseline", "central");
 
     // Create axes labels
     chartGroup.append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left + 40)
-      .attr("x", 0 - (height / 2))
-      .attr("dy", "1em")
-      .attr("class", "axisText")
-      .style("fill", "black")
-      .style("font", "20px sans-serif")
-      .style("font-weight", "bold")
-      .text("People without Healthcare (%)");
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left + 40)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .attr("class", "axisText")
+        .style("fill", "black")
+        .style("font", "20px sans-serif")
+        .style("font-weight", "bold")
+        .text("People without Healthcare (%)");
 
     chartGroup.append("text")
-      .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
-      .attr("class", "axisText")
-      .style("font", "20px sans-serif")
-      .style("font-weight", "bold")
-      .text("Poverty (%)");
-      
-  }).catch(function(error) {
+        .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+        .attr("class", "axisText")
+        .style("font", "20px sans-serif")
+        .style("font-weight", "bold")
+        .text("Poverty (%)");
+
+}).catch(function (error) {
     console.log(error);
-  });
+});
 
 
