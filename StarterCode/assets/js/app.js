@@ -1,5 +1,5 @@
 // Set up initial parameters to display chart image
-//=====================================================================
+//======================================================================
 var svgWidth = 960;
 var svgHeight = 600;
 
@@ -14,7 +14,7 @@ var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
 // Create an SVG wrapper and append the SVG group to hold the chart.
-//=====================================================================
+//========================================================================
 var svg = d3.select("#scatter")
     .append("svg")
     .attr("width", svgWidth)
@@ -25,7 +25,7 @@ var chartGroup = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 //Import data from the CSV file
-
+//=========================================================================
 d3.csv("assets/data/data.csv").then(function (healthData) {
     console.log(healthData)
 
@@ -39,7 +39,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
     });
 
     // Create the scale functions
-    // ==============================
+    // ==================================================================
     var xLinearScale = d3.scaleLinear()
         .domain([8, d3.max(healthData, d => d.poverty + 2.5)])
         .range([0, width]);
@@ -49,12 +49,12 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .range([height, 0]);
 
     // Create the axis functions
-    // ==============================
+    // ===================================================================
     var bottomAxis = d3.axisBottom(xLinearScale);
     var leftAxis = d3.axisLeft(yLinearScale);
 
     // Append Axes to the chart
-    // ==============================
+    // ===================================================================
     chartGroup.append("g")
         .attr("transform", `translate(0, ${height})`)
         .call(bottomAxis);
@@ -63,7 +63,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .call(leftAxis);
 
     // Create Circles
-    // ==============================
+    // ==================================================================
     var circlesGroup = chartGroup.selectAll("circle")
         .data(healthData)
         .enter()
@@ -74,7 +74,8 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .classed("stateCircle", true)
         .attr("opacity", ".5");
 
-    //Alternative to tool tip for adding text datapoints
+    //Appending state abbreviation text to datapoints
+    //==================================================================
     chartGroup.append("g")
         .selectAll('text')
         .data(healthData)
