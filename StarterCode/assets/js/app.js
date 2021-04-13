@@ -98,7 +98,7 @@ d3.csv("assets/data/data.csv").then(function (healthData) {
         .style("fill", "black")
         .style("font", "20px sans-serif")
         .style("font-weight", "bold")
-        .text("People without Healthcare (%)");
+        .text("Lacks HealthCare (%)");
 
     chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
